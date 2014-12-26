@@ -23,7 +23,7 @@ GetAsm_Line(start, pixels, color):
    for i in range(0, pixels):
      stringToReturn = stringToReturn + "LDA #" + colorDict[color] + "\n" + "STA $" + getHexString(start + i) + "\n\n"
         
-    return stringToReturn
+   return stringToReturn
 
 
 Parameters:
