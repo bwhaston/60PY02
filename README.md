@@ -20,8 +20,8 @@ GetAsm_Line(start, pixels, color):
                   "gray": "$0C", "light green": "$0D", "light blue": "$0E", "light gray": "$0F"
                 }
                 
-    for i in range(0, pixels):
-        stringToReturn = stringToReturn + "LDA #" + colorDict[color] + "\n" + "STA $" + getHexString(start + i) + "\n\n"
+   for i in range(0, pixels):
+     stringToReturn = stringToReturn + "LDA #" + colorDict[color] + "\n" + "STA $" + getHexString(start + i) + "\n\n"
         
     return stringToReturn
 
