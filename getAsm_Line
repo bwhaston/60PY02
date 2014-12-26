@@ -28,10 +28,12 @@ def getAsm_Line(start, pixels, color):
 
     # stringToReturn is a string that will eventually hold the finished, valid 6502 assembly. It will be the returned value in function getAsm.
     
-    colorDict = {"black": "$00", "white": "$01", "red": "$02", "cyan": "$03",
-                        "purple": "$04", "green": "$05", "blue": "$06", "yellow": "$07",
-                        "orange": "$08", "brown": "$09", "light red": "$0A", "dark gray": "$0B",
-                        "gray": "$0C", "light green": "$0D", "light blue": "$0E", "light gray": "$0F"};
+    colorDict = {
+                    "black": "$00", "white": "$01", "red": "$02", "cyan": "$03",
+                    "purple": "$04", "green": "$05", "blue": "$06", "yellow": "$07",
+                    "orange": "$08", "brown": "$09", "light red": "$0A", "dark gray": "$0B",
+                    "gray": "$0C", "light green": "$0D", "light blue": "$0E", "light gray": "$0F"
+                };
     
     # colorDict is a dictionary holds all of the colors and their corresponding hexadeximal codes.
 
