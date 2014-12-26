@@ -31,20 +31,20 @@ Parameters:
   
   start:
   
-    An int that will be converted into a valid hex number to represent either a memory address/location or a value to
+  An int that will be converted into a valid hex number to represent either a memory address/location or a value to
   put into a memory address/location.
   
   pixels:
   
-    An int that represents how many pixels will be drawn based on the string that getAsm_Line returns.
+  An int that represents how many pixels will be drawn based on the string that getAsm_Line returns.
     
   color:
   
-    A string that will be used as a key to acces hex codes corresponding to each color the the 6502 is
+  A string that will be used as a key to acces hex codes corresponding to each color the the 6502 is
   capable of producing.
 
   Acceptable colors to pass in:
-    black, white, red, cyan, purple, green, blue, yellow,
-    orange, brown, light red, dark gray, gray, light green, light blue, light gray.
+  black, white, red, cyan, purple, green, blue, yellow,
+  orange, brown, light red, dark gray, gray, light green, light blue, light gray.
 
   All others strings passed in will result in a KeyError when trying to access data from colorDict.
