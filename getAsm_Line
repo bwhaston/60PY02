@@ -1,0 +1,61 @@
+def getHexString(hexNum):
+    '''
+    This helper function will produce a 6502-friendly string representation of a hexadecimal number.
+
+    Parameters: hexNum as int.
+    '''
+
+    # We need to do a slice of the returned value because the way that Python
+    # outputs hex numbers by default will not be accepted by the 6502 emulator.
+    # Usually, Python does hex out put like so:
+    #
+    # print(hex(100))
+    # >> 0x64
+    # The formatting below will present a hex number in a way that will always be
+    # acceptable to the 6502 emulator the purposes of coloring any pixels in the
+    # display.
+    
+    return "0" + str(hex(hexNum))[2:]
+
+def getAsm_Line(start, pixels, color):
+    '''
+    This function will produce 6502 assembly code that, when assembled, will draw a line of length pixels, starting at start, and in the color color.
+
+    Parameters: start as int, pixels as int, color as str.
+    '''
+    
+    stringToReturn = "";
+
+    # stringToReturn is a string that will eventually hold the finished, valid 6502 assembly. It will be the returned value in function getAsm.
+    
+    colorDict = {"black": "$00", "white": "$01", "red": "$02", "cyan": "$03",
+                        "purple": "$04", "green": "$05", "blue": "$06", "yellow": "$07",
+                        "orange": "$08", "brown": "$09", "light red": "$0A", "dark gray": "$0B",
+                        "gray": "$0C", "light green": "$0D", "light blue": "$0E", "light gray": "$0F"};
+    
+    # colorDict is a dictionary holds all of the colors and their corresponding hexadeximal codes.
+
+    # The for loop below will build stringToReturn
+    
+    for i in range(0, pixels):
+        stringToReturn = stringToReturn + "LDA #" + colorDict[color] + "\n" + "STA $" + getHexString(start + i) + "\n\n"
+
+    # A note about the getHexString() function:
+    # The screen buffer of a 6502 processor starts at memory location 512 (hex 200)
+    # and ends at location 1535 (hex 05FF.) This means that if you want to address the
+    # 0,0 coordinate of the screen, then the first argument that you need to pass to getAsm_Line needs to
+    # be from 512 to 1535.
+    #
+    # I want to implement an abstraction that will allow users to just pass in either a decimal number or
+    # a coordinate, rather than having to know where the video addresses start and end. Something like:
+    #
+    # getAsm_Line((0, 0), 5, "red") # Draw 5 red pixels, starting at coordinate 0,0 (or address 512.)
+
+    return stringToReturn
+
+# Print a line of 5 red pixels, starting from coordinate 0, 0 of the screen (memory address 512.)
+# getAsm_Line will produce a horizontal line. If you pass in an int for parameter pixels that is >32,
+# (the lenght of one line of pixels for the 6502 display) then the "line" that you'll produce will wrap around.
+#
+# Example:
+print(getAsm_Line(512, 50, "red"))
